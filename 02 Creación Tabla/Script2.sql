@@ -15,9 +15,10 @@ deleted BOOLEAN DEFAULT FALSE -- Borrado lógico
 -- Tabla para usuarios
 CREATE TABLE usuarios(
 id_usuario INT AUTO_INCREMENT PRIMARY KEY, -- Id único
-nombre_tipo VARCHAR(100) NOT NULL, -- Nombre de usuario
+username VARCHAR(100) NOT NULL, -- Nombre de usuario
 correo VARCHAR(100) UNIQUE, -- Correo electrónico único
-tipo_usuario_id INT, -- Relación a tipo_usuario
+password VARCHAR(100) NOT NULL, -- Contraseña del usuario
+id_tipo_usuario INT, -- Relación a tipo_usuario
 created_at DATETIME DEFAULT CURRENT_TIMESTAMP, -- Fecha creación
 updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, -- Fecha modificación
 created_by INT,-- Usuario que crea
@@ -27,7 +28,7 @@ deleted BOOLEAN DEFAULT FALSE -- Borrado lógico
 
 CREATE TABLE productos (
 id_productos INT AUTO_INCREMENT PRIMARY KEY, -- Id único
-nombre_productos VARCHAR(100) NOT NULL, 
+nombre_producto VARCHAR(100) NOT NULL, 
 precio INT, 
 stock INT DEFAULT 0, 
 created_at DATETIME DEFAULT CURRENT_TIMESTAMP, -- Fecha creación
@@ -71,7 +72,7 @@ ALTER TABLE usuarios -- Modificar tabla
 -- Agregar una restricción (FK)
 ADD CONSTRAINT fk_usuario_tipo_usuario
 -- Añade referencia(FK)
-FOREIGN KEY (tipo_usuario_id) REFERENCES
+FOREIGN KEY (id_tipo_usuario) REFERENCES
 tipo_usuarios(id_tipo_usuario);
 
 ALTER TABLE usuarios
